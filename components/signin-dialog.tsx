@@ -10,19 +10,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Mail } from "lucide-react";
 import Image from "next/image";
 import TextInput from "./text-input";
 
-export function SigninDialog() {
+interface SigninDialogProps {
+  showSignin: boolean;
+  setShowSignin: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SigninDialog: React.FC<SigninDialogProps> = ({
+  showSignin,
+  setShowSignin,
+  setShowSignup,
+}) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [open, setOpen] = React.useState(false);
-
-  console.log(open);
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={showSignin} onOpenChange={setShowSignin}>
       <DialogTrigger asChild>
         <Button
           className="rounded-full  px-2 py-1 h-max text-sm"
@@ -55,13 +61,6 @@ export function SigninDialog() {
 
         <DialogFooter>
           <Button
-            className="rounded-full flex gap-2 items-center"
-            type="submit"
-          >
-            <Mail size={20} />
-            <span className="w-32">Sign In With Email</span>
-          </Button>
-          <Button
             className="rounded-full border flex gap-2 items-center"
             variant={"ghost"}
             type="submit"
@@ -84,7 +83,10 @@ export function SigninDialog() {
             No account?{" "}
             <span
               className="text-green-600 font-bold cursor-pointer"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setShowSignin(false);
+                setShowSignup(true);
+              }}
             >
               Create one
             </span>
@@ -93,4 +95,6 @@ export function SigninDialog() {
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default SigninDialog;

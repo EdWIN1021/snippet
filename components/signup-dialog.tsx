@@ -14,13 +14,23 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import TextInput from "./text-input";
 
-export function SignupDialog() {
+interface SignupDialogProps {
+  showSignup: boolean;
+  setShowSignup: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowSignin: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SignupDialog: React.FC<SignupDialogProps> = ({
+  showSignup,
+  setShowSignup,
+  setShowSignin,
+}) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [open, setOpen] = React.useState(false);
+  const [confirmPassword, setConfirmPassword] = React.useState("");
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger asChild>
         <Button className="bg-green-600 hover:bg-green-500 text-white rounded-full px-2 py-1 h-max text-sm">
           Sign up
@@ -29,7 +39,7 @@ export function SignupDialog() {
 
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="my-5">Welcome back.</DialogTitle>
+          <DialogTitle className="my-5">Join Blog.</DialogTitle>
         </DialogHeader>
 
         <div className="my-5 flex flex-col gap-3">
@@ -46,6 +56,13 @@ export function SignupDialog() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+
+          <TextInput
+            label="Confirm Password"
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
         </div>
 
         <DialogFooter>
@@ -54,7 +71,7 @@ export function SignupDialog() {
             type="submit"
           >
             <Mail size={20} />
-            <span className="w-32">Sign In With Email</span>
+            <span className="w-32">Sign Up With Email</span>
           </Button>
           <Button
             className="rounded-full border flex gap-2 items-center"
@@ -63,7 +80,7 @@ export function SignupDialog() {
           >
             <Image src="/google.svg" width={20} height={20} alt="google" />
 
-            <span className="w-32"> Sign In With Google</span>
+            <span className="w-32"> Sign Up With Google</span>
           </Button>
 
           <Button
@@ -72,20 +89,25 @@ export function SignupDialog() {
             type="submit"
           >
             <Image src="/github.svg" width={20} height={20} alt="github" />
-            <span className="w-32"> Sign In With Github</span>
+            <span className="w-32"> Sign Up With Github</span>
           </Button>
 
           <p className="text-center mt-5">
-            No account?{" "}
+            Already have an account?{" "}
             <span
               className="text-green-600 font-bold cursor-pointer"
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setShowSignup(false);
+                setShowSignin(true);
+              }}
             >
-              Create one
+              Sign in
             </span>
           </p>
         </DialogFooter>
       </DialogContent>
     </Dialog>
   );
-}
+};
+
+export default SignupDialog;
