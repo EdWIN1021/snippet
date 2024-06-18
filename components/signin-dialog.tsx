@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -64,6 +65,7 @@ const SigninDialog: React.FC<SigninDialogProps> = ({
             className="rounded-full border flex gap-2 items-center"
             variant={"ghost"}
             type="submit"
+            onClick={() => signIn("google")}
           >
             <Image src="/google.svg" width={20} height={20} alt="google" />
 

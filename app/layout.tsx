@@ -4,6 +4,7 @@ import clsx from "clsx";
 import "./globals.css";
 import Header from "@/components/header";
 import { Separator } from "@/components/ui/separator";
+import Providers from "@/providers";
 
 const inter = Nunito({ subsets: ["latin"] });
 
@@ -20,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(`max-w-screen-2xl mx-auto`, inter.className)}>
-        <Header />
-        <Separator className="my-2" />
-        <div>{children}</div>
+        <Providers>
+          <Header />
+          <Separator className="my-2" />
+          <div>{children}</div>
+        </Providers>
       </body>
     </html>
   );

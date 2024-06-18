@@ -20,48 +20,13 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials) {
-        try {
-          const response = await fetch(
-            `${process.env.NEXTAUTH_URL}/api/signin`,
-            {
-              method: "POST",
-              body: JSON.stringify(credentials),
-              headers: { "Content-Type": "application/json" },
-            }
-          );
-
-          if (!response.ok) {
-            const { error } = await response.json();
-            throw new Error(error.message);
-          }
-          const { data } = await response.json();
-          return data.user;
-        } catch (err) {
-          throw err;
-        }
+        return null;
       },
     }),
   ],
 
   callbacks: {
     async signIn({ user, account }) {
-      if (
-        !(account?.provider === "google" || account?.provider === "github") ||
-        !user
-      ) {
-        return true;
-      }
-
-      // try {
-      //   const existingUser = await getUser(user.email!);
-      //   if (!existingUser) {
-      //     await createUser(user.email!, user.name!, user.image!);
-      //   }
-      // } catch (err) {
-      //   console.log(err);
-      //   return false;
-      // }
-
       return true;
     },
     async session({ session, token, user }) {
