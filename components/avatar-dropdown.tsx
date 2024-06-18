@@ -11,20 +11,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LogOut, User } from "lucide-react";
-import { useSession } from "next-auth/react";
+import { LogOut, User as UserIcon } from "lucide-react";
+import type { User } from "@prisma/client";
+import { signOut } from "next-auth/react";
 
-const AvatarDropdown = () => {
-  const { data: session, status } = useSession();
+interface AvatarDropdownProps {
+  user: User;
+}
 
-  console.log(session);
-
+const AvatarDropdown: React.FC<AvatarDropdownProps> = ({ user }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Avatar className="cursor-pointer">
           <AvatarImage
-            src={session?.user.image || "https://github.com/shadcn.png"}
+            src={user.image || "https://github.com/shadcn.png"}
             alt="@shadcn"
           />
           <AvatarFallback>CN</AvatarFallback>
@@ -36,12 +37,12 @@ const AvatarDropdown = () => {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <User className="mr-2 h-4 w-4" />
+            <UserIcon className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
 
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={() => signOut()}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>Log out</span>
         </DropdownMenuItem>
