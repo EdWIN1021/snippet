@@ -35,9 +35,9 @@ const PostFormDialog = () => {
 
       <DialogContent>
         <DialogHeader>
-          <DialogTitle className="my-5">Create a snippet</DialogTitle>
+          <DialogTitle className="my-5">Create a post</DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-4">
           <Input
             className="h-14 text-xl"
             placeholder="Title"
