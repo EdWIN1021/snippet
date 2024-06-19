@@ -6,6 +6,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import Editor from "@monaco-editor/react";
 import LanguageSelect from "./language-select";
+import { useSession } from "next-auth/react";
 
 import {
   Dialog,
@@ -16,10 +17,25 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { Pencil } from "lucide-react";
+import * as actions from "@/actions";
+import { useFormState } from "react-dom";
 
 const PostFormDialog = () => {
-  const [title, setTitle] = React.useState("");
   const [language, setLanguage] = React.useState("javascript");
+  const [code, setCode] = React.useState<string | undefined>("");
+  const { data: session } = useSession();
+
+  const [formState, action] = useFormState(
+    actions.createPost.bind(null, {
+      userId: session?.user.id || "",
+      code: code || "",
+    }),
+    {
+      errors: {},
+    }
+  );
+
+  console.log(formState);
 
   return (
     <Dialog>
@@ -37,27 +53,26 @@ const PostFormDialog = () => {
         <DialogHeader>
           <DialogTitle className="my-5">Create a post</DialogTitle>
         </DialogHeader>
-        <div className="flex flex-col gap-4">
-          <Input
-            className="h-14 text-xl"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <Textarea placeholder="description" />
+        <form className="flex flex-col gap-4" action={action}>
+          <Input className="h-14 text-xl" placeholder="Title" name="title" />
+          <Textarea placeholder="description" name="description" />
 
           <LanguageSelect language={language} setLanguage={setLanguage} />
 
           <Editor
+            // theme="vs-dark"
             className="border"
             height="40vh"
-            // theme="vs-dark"
+            value={code}
             defaultLanguage="javascript"
             language={language}
             defaultValue="// some comment"
+            onChange={(newValue) => setCode(newValue)}
           />
-          <Button className="bg-green-600 hover:bg-green-700">Submit</Button>
-        </div>
+          <Button type="submit" className="bg-green-600 hover:bg-green-700">
+            Submit
+          </Button>
+        </form>
       </DialogContent>
     </Dialog>
   );
