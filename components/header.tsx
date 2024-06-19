@@ -9,6 +9,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { Pencil } from "lucide-react";
+import SnippetFormDialog from "./snippet-form-dialog";
 
 const header = async () => {
   const session = await getServerSession(authOptions);
@@ -19,10 +20,7 @@ const header = async () => {
       <SearchInput />
       {session ? (
         <>
-          <Link className="flex items-center gap-2 text-gray-500" href="/write">
-            <Pencil className="h-5 w-5 " />
-            <span>Write</span>
-          </Link>
+          <SnippetFormDialog />
 
           <AvatarDropdown user={session?.user} />
         </>
