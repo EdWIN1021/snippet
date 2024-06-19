@@ -1,11 +1,5 @@
-import MarkdownForm from "@/components/markdown-form";
-import MarkdownPreview from "@/components/markdown-preview";
+import MarkdownEditor from "@/components/markdown-editor";
 
 export default function page() {
-  return (
-    <div className="flex">
-      <MarkdownForm />
-      <MarkdownPreview />
-    </div>
-  );
+  return <MarkdownEditor />;
 }
