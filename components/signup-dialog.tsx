@@ -33,7 +33,7 @@ const SignupDialog: React.FC<SignupDialogProps> = ({
   return (
     <Dialog open={showSignup} onOpenChange={setShowSignup}>
       <DialogTrigger asChild>
-        <Button className="bg-green-600 hover:bg-green-500 text-white rounded-full px-2 py-1 h-max text-sm">
+        <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-2 py-1 h-max text-sm">
           Sign up
         </Button>
       </DialogTrigger>
