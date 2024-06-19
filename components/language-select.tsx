@@ -23,7 +23,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({
       value={language}
       onValueChange={(language) => setLanguage(language)}
     >
-      <SelectTrigger className="w-[280px]">
+      <SelectTrigger>
         <SelectValue placeholder="Select a language" />
       </SelectTrigger>
       <SelectContent>
