@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={clsx(`max-w-screen-2xl mx-auto`, inter.className)}>
         <Providers>
           <Header />
-          <Separator className="my-2" />
+          <Separator />
           <div>{children}</div>
         </Providers>
       </body>

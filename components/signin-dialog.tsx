@@ -64,7 +64,6 @@ const SigninDialog: React.FC<SigninDialogProps> = ({
           <Button
             className="rounded-full border flex gap-2 items-center"
             variant={"ghost"}
-            type="submit"
             onClick={() => signIn("google")}
           >
             <Image src="/google.svg" width={20} height={20} alt="google" />
@@ -75,7 +74,7 @@ const SigninDialog: React.FC<SigninDialogProps> = ({
           <Button
             className="rounded-full border flex gap-2 items-center"
             variant={"ghost"}
-            type="submit"
+            onClick={() => signIn("github")}
           >
             <Image src="/github.svg" width={20} height={20} alt="github" />
             <span className="w-32"> Sign In With Github</span>
