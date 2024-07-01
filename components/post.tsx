@@ -1,9 +1,10 @@
 import { Separator } from "./ui/separator";
 import { CircleUser, Bookmark } from "lucide-react";
 import type { Post } from "@prisma/client";
+import { PostWithAuthor } from "@/types";
 
 interface PostProps {
-  post: Post;
+  post: PostWithAuthor;
 }
 
 const Post: React.FC<PostProps> = ({ post }) => {
@@ -16,7 +17,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <CircleUser />
 
               <div className="text-sm">
-                {/* <span>{post.user.name}</span> */}
+                <span>{post.user.name}</span>
 
                 <span className="text-dark-gray"> &middot; Feb 16, 2022</span>
               </div>

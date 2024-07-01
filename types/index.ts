@@ -1,5 +1,5 @@
 import type { Post } from "@prisma/client";
 
-type PostWithAuthor = Post & {
+export type PostWithAuthor = Post & {
   user: { name: string | null };
 };
