@@ -19,7 +19,9 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <div className="text-sm">
                 <span>{post.user.name}</span>
 
-                <span className="text-dark-gray"> &middot; Feb 16, 2022</span>
+                <span className="text-dark-gray">
+                  &middot; {post.createdAt.toLocaleDateString()}
+                </span>
               </div>
             </div>
             <h2 className="py-1 text-xl font-bold">{post.title}</h2>
