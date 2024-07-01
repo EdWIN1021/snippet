@@ -16,7 +16,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
               <CircleUser />
 
               <div className="text-sm">
-                <span>Unbecoming</span>
+                {/* <span>{post.user.name}</span> */}
 
                 <span className="text-dark-gray"> &middot; Feb 16, 2022</span>
               </div>

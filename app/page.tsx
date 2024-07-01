@@ -1,11 +1,10 @@
+import { fetchPosts } from "@/actions";
 import Post from "@/components/post";
-import RecentlySaved from "@/components/recently-saved";
 import RecommendedTopics from "@/components/recommended-topics";
 import WhoToFollow from "@/components/who-to-follow";
-import { prisma } from "@/prisma/db";
 
 export default async function Home() {
-  const posts = await prisma.post.findMany();
+  const posts = await fetchPosts();
 
   return (
     <div className="flex">
