@@ -2,6 +2,7 @@ import { Separator } from "./ui/separator";
 import { CircleUser, Bookmark } from "lucide-react";
 import type { Post } from "@prisma/client";
 import { PostWithAuthor } from "@/types";
+import Link from "next/link";
 
 interface PostProps {
   post: PostWithAuthor;
@@ -10,7 +11,7 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ post }) => {
   return (
     <>
-      <div className="p-10">
+      <Link href={`/posts/${post.id}`} className="p-10">
         <div className="flex ">
           <div>
             <div className="flex gap-1">
@@ -38,7 +39,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
 
           <Bookmark />
         </div>
-      </div>
+      </Link>
 
       <Separator />
     </>
