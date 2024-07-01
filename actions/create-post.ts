@@ -1,7 +1,9 @@
 "use server";
 
 import { prisma } from "@/prisma/db";
+import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { paths } from "@/lib/utils";
 
 const schema = z.object({
   title: z.string().min(3),
@@ -43,6 +45,7 @@ export async function createPost(
     },
   });
 
+  revalidatePath(paths.home());
   return {
     errors: {},
   };
