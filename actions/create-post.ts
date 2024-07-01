@@ -7,6 +7,7 @@ const schema = z.object({
   title: z.string().min(3),
   description: z.string().min(10),
   code: z.string().min(10),
+  language: z.string().min(3),
 });
 
 interface CreatePostFormState {
@@ -18,9 +19,11 @@ export async function createPost(
   formState: CreatePostFormState,
   formData: FormData
 ) {
+  console.log(formData);
   const result = schema.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
+    language: formData.get("language"),
     code,
   });
 
@@ -35,6 +38,7 @@ export async function createPost(
       userId,
       title: result.data.title,
       description: result.data.description,
+      language: result.data.language,
       code,
     },
   });

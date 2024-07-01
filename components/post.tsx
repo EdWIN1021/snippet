@@ -29,15 +29,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
         <div className="flex items-center mt-5 justify-between">
           <div className="flex gap-4">
             <span className="text-sm rounded-full bg-[#F2F2F2] px-2 py-1 cursor-pointer inline-block">
-              Java
-            </span>
-
-            <span className="text-sm rounded-full bg-[#F2F2F2] px-2 py-1 cursor-pointer inline-block">
-              React
-            </span>
-
-            <span className="text-sm rounded-full bg-[#F2F2F2] px-2 py-1 cursor-pointer inline-block">
-              Web development
+              {"Java"}
             </span>
           </div>
 

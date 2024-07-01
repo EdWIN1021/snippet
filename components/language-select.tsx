@@ -20,6 +20,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({
 }) => {
   return (
     <Select
+      name="language"
       value={language}
       onValueChange={(language) => setLanguage(language)}
     >
@@ -29,6 +30,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({
       <SelectContent>
         <SelectGroup>
           <SelectItem value="javascript">Javascript</SelectItem>
+          <SelectItem value="typescript">Typescript</SelectItem>
           <SelectItem value="python">Python</SelectItem>
           <SelectItem value="java">Java</SelectItem>
           <SelectItem value="go">Go</SelectItem>
